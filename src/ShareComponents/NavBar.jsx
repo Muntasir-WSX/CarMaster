@@ -1,9 +1,13 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
+import { HiOutlineShoppingBag, HiOutlineSearch } from "react-icons/hi";
 
 export default function NavBar() {
-  // মেনু আইটেমগুলোকে একটি অ্যারে হিসেবে রাখা ভালো, এতে মেইনটেইন করা সহজ হয়
+  const pathname = usePathname();
+
   const navItems = [
     { title: "Home", path: "/" },
     { title: "About", path: "/about" },
@@ -14,67 +18,94 @@ export default function NavBar() {
 
   const menuItems = (
     <>
-      {navItems.map((item, index) => (
-        <li key={index}>
-          <Link href={item.path} className="font-semibold hover:text-primary">
-            {item.title}
-          </Link>
-        </li>
-      ))}
+      {navItems.map((item, index) => {
+        const isActive = pathname === item.path;
+        return (
+          <li key={index}>
+            <Link
+              href={item.path}
+              className={`font-semibold transition-colors duration-300 ${
+                isActive ? "text-[#FF3811]" : "hover:text-[#FF3811]"
+              }`}
+            >
+              {item.title}
+            </Link>
+          </li>
+        );
+      })}
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-4 md:px-10">
-      {/* Navbar Start: Logo & Mobile Menu */}
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
+    <div className="drawer z-50">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* Navbar */}
+        <div className="navbar bg-base-100 shadow-sm px-4 md:px-10 py-4">
+          <div className="navbar-start">
+            <div className="flex-none lg:hidden">
+              <label
+                htmlFor="my-drawer-3"
+                aria-label="open sidebar"
+                className="btn btn-ghost"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block h-6 w-6 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/assets/logo.svg"
+                width={100}
+                height={60}
+                alt="CarMaster Logo"
+                priority
               />
-            </svg>
+            </Link>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-          >
-            {menuItems}
-          </ul>
+
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 gap-2">
+              {menuItems}
+            </ul>
+          </div>
+
+          <div className="navbar-end gap-4">
+            <div className="flex items-center gap-3 mr-2">
+               <HiOutlineShoppingBag size={24} className="cursor-pointer hover:text-[#FF3811]" />
+               <HiOutlineSearch size={24} className="cursor-pointer hover:text-[#FF3811]" />
+            </div>
+            <button className="btn btn-outline border-[#FF3811] text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811] hover:text-white px-6 rounded-md">
+              Appointment
+            </button>
+          </div>
         </div>
-        <Link href="/" className="flex items-center">
-          <Image 
-            src="/assets/logo.svg" 
-            width={100} 
-            height={60} 
-            alt="CarMaster Logo" 
-            priority
-          />
-        </Link>
       </div>
 
-      {/* Navbar Center: Desktop Menu */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">
+      {/* Sidebar / Drawer Side */}
+      <div className="drawer-side">
+        <label
+          htmlFor="my-drawer-3"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu bg-base-200 min-h-full w-80 p-6 space-y-4">
+          <div className="mb-6">
+             <Image src="/assets/logo.svg" width={100} height={60} alt="Logo" />
+          </div>
           {menuItems}
         </ul>
-      </div>
-
-      {/* Navbar End: Action Button */}
-      <div className="navbar-end">
-        <button className="btn btn-outline btn-primary px-6 rounded-md">
-          Appointment
-        </button>
       </div>
     </div>
   );
