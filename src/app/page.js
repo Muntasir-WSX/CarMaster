@@ -1,6 +1,7 @@
 import ServicesSection from "./HomeComponents/ServicesSection/ServicesSection";
 import Banner from "./HomeComponents/Banner/Banner";
 import AboutUs from "./HomeComponents/AboutUs/AboutUs";
+import CTA from "./HomeComponents/CTA/CTA";
 
 export default function Home() {
   return (
@@ -15,8 +16,17 @@ export default function Home() {
       {/* Services Section */}
       <ServicesSection />
 
-      {/* Contact Section*/}
-      
+      {/* CTA Section */}
+      <CTA />
+
+      {/* products */}
+
+      {/* Meet Our Team */}
+
+      {/* Core Features */}
+
+      {/* testimonials */}
+
     </main>
   );
 }

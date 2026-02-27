@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { HiOutlineShoppingBag, HiOutlineSearch } from "react-icons/hi";
+import NavLogo from "./NavLogo";
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -64,15 +65,7 @@ export default function NavBar() {
                 </svg>
               </label>
             </div>
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/assets/logo.svg"
-                width={100}
-                height={60}
-                alt="CarMaster Logo"
-                priority
-              />
-            </Link>
+            <NavLogo></NavLogo>
           </div>
 
           <div className="navbar-center hidden lg:flex">
