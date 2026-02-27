@@ -6,7 +6,7 @@ export default async function ServicesSection() {
     const services = await servicesCollection.find({}).toArray();
 
     return (
-        <section className="container mx-auto py-20 px-4">
+        <section className="w-full">
             <div className="text-center mb-12">
                 <h3 className="text-xl font-bold text-[#FF3811] mb-2">Service</h3>
                 <h2 className="text-5xl font-bold mb-5 text-neutral-800">Our Service Area</h2>
