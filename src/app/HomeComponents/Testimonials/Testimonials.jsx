@@ -75,7 +75,7 @@ export default function Testimonials() {
   const duplicatedData = [...testimonialsData, ...testimonialsData];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className=" bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
       
         <div className="text-center mb-16">
