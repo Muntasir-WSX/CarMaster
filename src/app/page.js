@@ -2,6 +2,7 @@ import ServicesSection from "./HomeComponents/ServicesSection/ServicesSection";
 import Banner from "./HomeComponents/Banner/Banner";
 import AboutUs from "./HomeComponents/AboutUs/AboutUs";
 import CTA from "./HomeComponents/CTA/CTA";
+import Features from "./HomeComponents/Features/Features";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       {/* Meet Our Team */}
 
       {/* Core Features */}
+      <Features></Features>
 
       {/* testimonials */}
 
