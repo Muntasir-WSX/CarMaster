@@ -12,7 +12,7 @@ const featuresData = [
 
 export default function Features() {
     return (
-        <section className="py-20">
+        <section>
             <div className="text-center mb-12">
                 <h3 className="text-xl font-bold text-[#FF3811] mb-2">Core Features</h3>
                 <h2 className="text-4xl md:text-5xl font-bold mb-5">Why Choose Us</h2>
