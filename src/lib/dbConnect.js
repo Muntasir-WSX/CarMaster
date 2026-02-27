@@ -9,6 +9,6 @@ export default function dbConnect(collectionName) { // প্যারামি�
             deprecationErrors: true,
         }
     });
-    // সরাসরি কালেকশন রিটার্ন করছে
+    
     return client.db(process.env.DB_NAME).collection(collectionName);
 }

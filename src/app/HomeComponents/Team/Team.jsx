@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const teamData = [
-  { id: 1, img: "/assets/images/team/1.jpg", name: "Car Engine Plug", expert: "Engine Expert" },
-  { id: 2, img: "/assets/images/team/2.jpg", name: "Car Engine Plug", expert: "Engine Expert" },
-  { id: 3, img: "/assets/images/team/3.jpg", name: "Car Engine Plug", expert: "Engine Expert" },
+  { id: 1, img: "/assets/images/team/1.jpg", name: "Alex Benjamin", expert: "Engine Diagnostic Expert" },
+  { id: 2, img: "/assets/images/team/2.jpg", name: "Marcus Rickeltone", expert: "Master Mechanic" },
+  { id: 3, img: "/assets/images/team/3.jpg", name: "John Brooks", expert: "Tire & Brake Specialist" },
 ];
 
 export default function Team() {
@@ -15,9 +15,9 @@ export default function Team() {
     <div >
       <div className="text-center mb-12">
         <h3 className="text-xl font-bold text-[#FF3811] mb-2">Team</h3>
-        <h2 className="text-4xl md:text-5xl font-bold mb-5">Meet Our Team</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-5">Meet Our Expert Team</h2>
         <p className="text-gray-500 max-w-2xl mx-auto">
-          The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomised Words Which Don't Look Even Slightly Believable.
+          Our team of certified professionals is dedicated to keeping your vehicle safe on the road. With years of hands-on experience in modern automotive technology.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10">

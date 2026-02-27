@@ -4,6 +4,7 @@ import AboutUs from "./HomeComponents/AboutUs/AboutUs";
 import CTA from "./HomeComponents/CTA/CTA";
 import Features from "./HomeComponents/Features/Features";
 import Team from "./HomeComponents/Team/Team";
+import Testimonials from "./HomeComponents/Testimonials/Testimonials";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <Features></Features>
 
       {/* testimonials */}
+      <Testimonials></Testimonials>
 
     </main>
   );
