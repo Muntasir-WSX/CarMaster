@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
 
 export default function ServiceCard({ service }) {
@@ -18,9 +19,9 @@ export default function ServiceCard({ service }) {
                 <h2 className="card-title text-2xl font-bold text-neutral-700">{title}</h2>
                 <div className="flex items-center justify-between text-[#FF3811] font-bold text-xl mt-2">
                     <p>Price: ${price}</p>
-                    <button className="btn btn-ghost btn-circle btn-sm text-[#FF3811]">
+                    <Link href={`/services/${service._id}`} className="btn btn-ghost btn-circle btn-sm text-[#FF3811]">
                         <HiArrowRight size={22} />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

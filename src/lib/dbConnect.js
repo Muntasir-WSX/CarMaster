@@ -1,6 +1,10 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-export default function dbConnect(collectionName) { // প্যারামিটার যোগ করা হয়েছে
+export const collectionsName = {
+    servicesCollection: 'services',
+}
+
+export default function dbConnect(collectionName) { 
     const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri, {
         serverApi: {

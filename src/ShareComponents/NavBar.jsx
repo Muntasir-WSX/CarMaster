@@ -94,9 +94,7 @@ export default function NavBar() {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-6 space-y-4">
-          <div className="mb-6">
-             <Image src="/assets/logo.svg" width={100} height={60} alt="Logo" />
-          </div>
+          <NavLogo></NavLogo>
           {menuItems}
         </ul>
       </div>
