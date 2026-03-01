@@ -11,6 +11,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Car Doctor | Top Notch Service",
+  description: "Professional Car Repair and Maintenance",
+  icons: {
+    icon: "/icon.svg", 
+   
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
