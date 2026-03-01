@@ -4,26 +4,31 @@ import React from "react";
 import { signIn } from "next-auth/react";
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 
 export default function LoginForm() {
+  const router = useRouter();
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    const res = await signIn("credentials", {
+    const response = await signIn("credentials", {
       email,
       password,
-     
       callbackUrl: "/",
+      redirect: false, 
     });
 
-    if (res?.error) {
-      toast.error("Invalid email or password!");
+   if (response.ok){
+    router.push("/");
+    form.reset();
+    toast.success("Login successful!");
     } else {
-      toast.success("Logged in successfully!");
-    }
+      toast.error("Invalid email or password. Please try again.");
+   }
   };
 
   const handleSocialLogin = (platform) => {

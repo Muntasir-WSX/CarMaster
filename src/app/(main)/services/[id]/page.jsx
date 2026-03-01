@@ -7,7 +7,7 @@ import VideoSection from '../VideoSection';
 
 export default async function ServicesDetails({ params }) {
   const { id } = await params;
-  const servicesCollection = dbConnect(collectionsName.servicesCollection);
+  const servicesCollection = await dbConnect(collectionsName.servicesCollection);
   const data = await servicesCollection.findOne({ _id: new ObjectId(id) });
 
   if (!data) return <p className="text-center py-20 font-bold text-2xl">Loading...</p>;

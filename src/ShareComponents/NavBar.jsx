@@ -4,8 +4,10 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { HiOutlineShoppingBag, HiOutlineSearch } from "react-icons/hi";
 import NavLogo from "./NavLogo";
+import { signOut, useSession } from "next-auth/react";
 
 export default function NavBar() {
+  const { data: session, status } = useSession();
   const pathname = usePathname();
 
   const navItems = [
@@ -16,22 +18,33 @@ export default function NavBar() {
     { title: "Contact", path: "/contact" },
   ];
 
-  // Login/SignUp links (Reusable)
+  // Login/SignUp links 
   const authLinks = (
-    <div className="flex items-center gap-1 font-semibold">
-      <Link 
-        href="/login" 
-        className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-      >
-        Login
-      </Link>
-      <span className="text-gray-400">/</span>
-      <Link 
-        href="/signup" 
-        className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-      >
-        SignUp
-      </Link>
+    <div className="flex items-center gap-4 font-semibold">
+      {status === "authenticated" ? (
+        <button 
+          onClick={() => signOut()} 
+          className="text-black hover:text-[#FF3811] transition-colors"
+        >
+          Logout
+        </button>
+      ) : (
+        <div className="flex items-center gap-1">
+          <Link 
+            href="/login" 
+            className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+          >
+            Login
+          </Link>
+          <span className="text-gray-400">/</span>
+          <Link 
+            href="/signup" 
+            className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+          >
+            SignUp
+          </Link>
+        </div>
+      )}
     </div>
   );
 
