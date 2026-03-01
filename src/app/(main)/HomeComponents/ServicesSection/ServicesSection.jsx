@@ -1,8 +1,9 @@
+import dbConnect, { collectionsName } from '@/lib/dbConnect';
 import ServiceCard from './ServiceCard'
-import dbConnect, { collectionsName } from '@/lib/dbConnect'
+
 
 export default async function ServicesSection() {
-    const servicesCollection = dbConnect(collectionsName.servicesCollection);
+    const servicesCollection = await dbConnect(collectionsName.servicesCollection);
     const services = await servicesCollection.find({}).toArray();
 
     return (

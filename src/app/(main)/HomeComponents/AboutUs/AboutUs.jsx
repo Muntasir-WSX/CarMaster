@@ -6,7 +6,7 @@ const parts = "/assets/images/about_us/parts.jpg";
 
 export default function AboutUs() {
   return (
-    <section className="max-w-7xl mx-auto  px-4 md:px-10 lg:px-0">
+    <section className="max-w-7xl mx-auto px-4 md:px-10 lg:px-0">
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
         <div className="w-full lg:w-1/2 relative h-100 md:h-137.5">
           <div className="w-4/5 h-4/5 relative overflow-hidden rounded-xl shadow-xl">
@@ -14,6 +14,8 @@ export default function AboutUs() {
               src={person}
               alt="Professional Mechanic"
               fill
+              // sizes যোগ করা হয়েছে ওয়ার্নিং দূর করতে
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
               className="object-cover"
             />
           </div>
@@ -22,10 +24,13 @@ export default function AboutUs() {
               src={parts}
               alt="Car Parts"
               fill
+              // sizes যোগ করা হয়েছে ওয়ার্নিং দূর করতে
+              sizes="(max-width: 768px) 60vw, 30vw"
               className="object-cover"
             />
           </div>
         </div>
+        
         <div className="w-full lg:w-1/2 space-y-5 text-center lg:text-left">
           <h5 className="text-[#FF3811] text-xl font-bold">About Us</h5>
           <h2 className="text-4xl md:text-5xl font-bold text-[#151515] leading-tight">
@@ -48,7 +53,6 @@ export default function AboutUs() {
             Get More Info
           </button>
         </div>
-
       </div>
     </section>
   );
