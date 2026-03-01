@@ -6,7 +6,6 @@ import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-
 export default function LoginForm() {
   const router = useRouter();
   const handleLogin = async (e) => {
@@ -19,20 +18,22 @@ export default function LoginForm() {
       email,
       password,
       callbackUrl: "/",
-      redirect: false, 
+      redirect: false,
     });
 
-   if (response.ok){
-    router.push("/");
-    form.reset();
-    toast.success("Login successful!");
+    if (response.ok) {
+      router.push("/");
+      form.reset();
+      toast.success("Login successful!");
     } else {
       toast.error("Invalid email or password. Please try again.");
-   }
+    }
   };
 
-  const handleSocialLogin = (platform) => {
-    console.log(`${platform} login clicked!`);
+  const handleSocialLogin = async (platform) => {
+    if (platform === "Google") {
+      await signIn("google", { callbackUrl: "/" });
+    }
   };
 
   return (
@@ -77,22 +78,11 @@ export default function LoginForm() {
         <p className="text-neutral-600 mb-6">Or Sign In with</p>
         <div className="flex justify-center gap-4">
           <button
-            onClick={() => handleSocialLogin("Facebook")}
-            className="p-3 bg-gray-100 rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
-          >
-            <FaFacebookF />
-          </button>
-          <button
-            onClick={() => handleSocialLogin("LinkedIn")}
-            className="p-3 bg-gray-100 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
-          >
-            <FaLinkedinIn />
-          </button>
-          <button
             onClick={() => handleSocialLogin("Google")}
-            className="p-3 bg-gray-100 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300"
+            className="flex items-center justify-center gap-3 p-4 w-full border-2 border-gray-200 rounded-lg font-bold text-gray-700 hover:border-[#FF3811] hover:bg-[#FF3811] hover:text-white transition-all duration-300 group shadow-sm"
           >
-            <FaGoogle />
+            <FaGoogle className="text-xl group-hover:text-white transition-colors" />
+            <span>Continue with Google</span>
           </button>
         </div>
       </div>
