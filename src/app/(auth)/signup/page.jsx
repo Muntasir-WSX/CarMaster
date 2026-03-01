@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa";
-import NavLogo from "@/ShareComponents/NavLogo"; // আপনার পাথ অনুযায়ী চেক করুন
+import NavLogo from "@/ShareComponents/NavLogo"; 
 import loginImg from "../../../../public/assets/images/login/login.svg"; 
 
 export default function SignUpPage() {
@@ -10,7 +10,6 @@ export default function SignUpPage() {
   const handleSignUp = (e) => {
     e.preventDefault();
     console.log("Sign Up button clicked!");
-    // এখানে আপনার রেজিস্ট্রেশন লজিক লিখবেন
   };
 
   const handleSocialSignUp = (platform) => {
