@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+
 import NavLogo from "@/ShareComponents/NavLogo";
 import loginImg from "../../../../public/assets/images/login/login.svg";
 import LoginForm from "./components/loginform";
 
-export default function LoginPage() {
-  
-
+export default async function LoginPage({ params }) {
+  const p = await params;
+  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+const data = await res.json();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
