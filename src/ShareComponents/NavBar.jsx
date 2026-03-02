@@ -5,6 +5,7 @@ import React from "react";
 import { HiOutlineShoppingBag, HiOutlineSearch } from "react-icons/hi";
 import NavLogo from "./NavLogo";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function NavBar() {
   const { data: session, status } = useSession();
@@ -19,34 +20,46 @@ export default function NavBar() {
   ];
 
   // Login/SignUp links 
-  const authLinks = (
-    <div className="flex items-center gap-4 font-semibold">
-      {status === "authenticated" ? (
+ const authLinks = (
+  <div className="flex items-center gap-4 font-semibold">
+    {status === "authenticated" ? (
+      <div className="flex items-center gap-3">
+        <div className="avatar">
+          <div className="w-10 rounded-full ring ring-[#FF3811] ring-offset-base-100 ring-offset-2">
+            <Image
+              src={session?.user?.image || "/default-avatar.png"} 
+              alt="User profile"
+              width={40}
+              height={40}
+            />
+          </div>
+        </div>
         <button 
           onClick={() => signOut()} 
-          className="text-black hover:text-[#FF3811] transition-colors"
+          className="btn btn-sm btn-ghost hover:text-[#FF3811] normal-case"
         >
           Logout
         </button>
-      ) : (
-        <div className="flex items-center gap-1">
-          <Link 
-            href="/login" 
-            className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-          >
-            Login
-          </Link>
-          <span className="text-gray-400">/</span>
-          <Link 
-            href="/signup" 
-            className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-          >
-            SignUp
-          </Link>
-        </div>
-      )}
-    </div>
-  );
+      </div>
+    ) : (
+      <div className="flex items-center gap-1">
+        <Link 
+          href="/login" 
+          className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+        >
+          Login
+        </Link>
+        <span className="text-gray-400">/</span>
+        <Link 
+          href="/signup" 
+          className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+        >
+          SignUp
+        </Link>
+      </div>
+    )}
+  </div>
+);
 
   const menuItems = (
     <>

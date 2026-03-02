@@ -35,6 +35,7 @@ export default function RegisterForm() {
       await signIn("google", { callbackUrl: "/" });
     }
   };
+  
   return (
     <div className="w-full lg:w-1/2 max-w-md border rounded-xl p-10 shadow-sm">
       <h2 className="text-4xl font-bold text-center mb-10 text-neutral-800">
