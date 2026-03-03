@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from 'next-auth/react';
 import React from 'react';
+import toast from 'react-hot-toast'; // ইমপোর্ট করা হয়েছে
 
 export default function CheckoutForm({ serviceData }) {
   const { data: session } = useSession();
@@ -9,7 +10,6 @@ export default function CheckoutForm({ serviceData }) {
     e.preventDefault();
     const form = e.target;
     
-    // ফরম থেকে ডাটা কালেকশন
     const bookingDetails = {
       customerName: session?.user?.name,
       email: session?.user?.email,
@@ -21,19 +21,36 @@ export default function CheckoutForm({ serviceData }) {
       serviceId: serviceData._id,
       serviceImg: serviceData.img,
       price: serviceData.price,
+      status: "pending"
     };
 
-    console.log("Booking Submitted:", bookingDetails);
-    
-    // এখানে আপনার ডাটাবেস এপিআই কল করুন
-    // const res = await fetch('/api/bookings', { method: 'POST', ... })
+    const loadingToast = toast.loading('Booking in progress...');
+
+    try {
+      const response = await fetch('/api/service/booking', { 
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(bookingDetails)
+      });
+
+      if (response.ok) {
+        toast.success("Service booked successfully!", { id: loadingToast });
+        form.reset();
+      } else {
+        toast.error("Something went wrong!", { id: loadingToast });
+      }
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+      toast.error("Failed to connect to server", { id: loadingToast });
+    }
   };
 
   return (
     <div className="bg-[#F3F3F3] p-10 md:p-20 rounded-xl mt-10">
       <form onSubmit={handleBooking} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        {/* Name - ReadOnly from Session */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Name</label>
           <input
@@ -44,7 +61,6 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Date - Dynamic Input */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Service Date</label>
           <input
@@ -55,7 +71,6 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Email - ReadOnly from Session */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Email</label>
           <input
@@ -67,7 +82,6 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Due Amount / Price - ReadOnly from Service Data */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Due Amount</label>
           <input
@@ -78,7 +92,6 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Phone - Manual Input */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Phone Number</label>
           <input
@@ -90,7 +103,6 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Address - Manual Input */}
         <div className="space-y-2">
           <label className="font-semibold text-neutral-700">Your Address</label>
           <input
@@ -102,12 +114,11 @@ export default function CheckoutForm({ serviceData }) {
           />
         </div>
 
-        {/* Message Area */}
         <div className="md:col-span-2 space-y-2">
           <label className="font-semibold text-neutral-700">Special Instructions</label>
           <textarea
             name="message"
-            placeholder="Any specific instructions for the doctor?"
+            placeholder="Any specific instructions?"
             rows="5"
             className="w-full p-4 rounded-lg bg-white outline-none focus:ring-2 focus:ring-[#FF3811]"
           ></textarea>
