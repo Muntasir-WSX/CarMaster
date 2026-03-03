@@ -3,7 +3,7 @@ import FooterLogo from '@/ShareComponents/FooterLogo';
 import Link from 'next/link';
 import { HiArrowRight, HiOutlineDocumentText } from 'react-icons/hi';
 
-export default function ServiceAside({ price, services = [] }) {
+export default function ServiceAside({ price, serviceId, services = [] }) {
   const hardcodedServices = [
     { id: 1, title: "Full Car Repair" },
     { id: 2, title: "Engine Repair" },
@@ -97,7 +97,7 @@ export default function ServiceAside({ price, services = [] }) {
       {/* 4. Price & Checkout */}
       <div className="pt-4">
         <h2 className="text-3xl font-bold text-neutral-800 mb-4">Price ${price}</h2>
-        <Link href={`/checkout/${services[0]?._id || ''}`}>
+        <Link href={`/checkout/${serviceId}`}>
           <button className="w-full bg-[#FF3811] text-white py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition-all">
             Proceed Checkout
           </button>
