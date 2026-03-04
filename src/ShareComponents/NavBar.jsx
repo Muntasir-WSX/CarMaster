@@ -111,9 +111,17 @@ export default function NavBar() {
             </div>
 
             <div className="flex items-center gap-3">
-               <HiOutlineShoppingBag size={24} className="cursor-pointer hover:text-[#FF3811]" />
-               <HiOutlineSearch size={24} className="cursor-pointer hover:text-[#FF3811]" />
-            </div>
+    <Link href="/my-bookings">
+        <HiOutlineShoppingBag 
+            size={24} 
+            className="cursor-pointer hover:text-[#FF3811] transition-colors" 
+        />
+    </Link>
+    <HiOutlineSearch 
+        size={24} 
+        className="cursor-pointer hover:text-[#FF3811]" 
+    />
+</div>
             
             <button className="btn btn-outline border-[#FF3811] text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811] hover:text-white px-6 rounded-md hidden sm:flex">
               Appointment

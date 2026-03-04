@@ -1,5 +1,6 @@
 import dbConnect, { collectionsName } from '@/lib/dbConnect';
 import ServiceCard from './ServiceCard'
+import Link from 'next/link';
 
 
 export default async function ServicesSection() {
@@ -21,9 +22,11 @@ export default async function ServicesSection() {
                 ))}
             </div>
             <div className="text-center mt-12">
-                <button className="btn btn-outline border-[#FF3811] text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811] hover:text-white px-8 rounded-md transition-all duration-300">
-                    More Services
-                </button>
+                <Link href="/services">
+        <button className="btn btn-outline border-[#FF3811] text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811] hover:text-white px-8 rounded-md transition-all duration-300">
+            More Services
+        </button>
+    </Link>
             </div>
         </section>
     );
