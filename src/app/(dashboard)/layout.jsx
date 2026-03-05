@@ -67,7 +67,7 @@ export default function DashboardLayout({ children }) {
                </div>
                <div className="overflow-hidden">
                   <h4 className="font-bold text-gray-900 truncate text-sm">{session?.user?.name}</h4>
-                  <div className="badge badge-error badge-sm text-[10px] text-white font-bold uppercase tracking-tighter py-2">
+                  <div className="badge badge-success badge-sm text-[10px] text-white font-bold uppercase tracking-tighter py-2">
                     {session?.user?.role}
                   </div>
                </div>
