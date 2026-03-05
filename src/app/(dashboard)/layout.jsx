@@ -25,6 +25,7 @@ export default function DashboardLayout({ children }) {
   const menuItems = [
     { title: "Dashboard Overview", path: "/admin", icon: <HiOutlineHome size={22} /> },
     { title: "All Appointments", path: "/admin/all-appointments", icon: <HiOutlineCalendar size={22} /> },
+    { title: "All Bookings", path: "/admin/all-bookings", icon: <HiOutlineViewGrid size={22} /> },
     { title: "Manage Services", path: "/admin/manage-services", icon: <HiOutlineViewGrid size={22} /> },
   ];
 
