@@ -1,10 +1,12 @@
 "use client";
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import toast from 'react-hot-toast'; // ইমপোর্ট করা হয়েছে
+import toast from 'react-hot-toast';
 
 export default function CheckoutForm({ serviceData }) {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleBooking = async (e) => {
     e.preventDefault();
@@ -38,6 +40,7 @@ export default function CheckoutForm({ serviceData }) {
       if (response.ok) {
         toast.success("Service booked successfully!", { id: loadingToast });
         form.reset();
+        router.push('/my-bookings');
       } else {
         toast.error("Something went wrong!", { id: loadingToast });
       }
