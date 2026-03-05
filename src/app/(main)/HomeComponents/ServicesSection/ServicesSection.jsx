@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 export default async function ServicesSection() {
     const servicesCollection = await dbConnect(collectionsName.servicesCollection);
-    const services = await servicesCollection.find({}).toArray();
-
+    const services = await servicesCollection.find({}).limit(6).toArray();
     return (
         <section className="w-full">
             <div className="text-center mb-12">

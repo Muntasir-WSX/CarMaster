@@ -14,13 +14,17 @@ export default function ServicesPage() {
       try {
         setLoading(true);
        
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
-        const res = await fetch(`${baseUrl}/api/services`);
-        
-        if (!res.ok) throw new Error("Failed to fetch services");
-        
-        const data = await res.json();
-        setServices(data);
+        const res = await fetch("/api/services");
+    const data = await res.json();
+        if (Array.isArray(data)) {
+        setServices(data); 
+    } else if (data.data && Array.isArray(data.data)) {
+        setServices(data.data); 
+    } else if (data.services && Array.isArray(data.services)) {
+        setServices(data.services); 
+    } else {
+        setServices([]); 
+    }
       } catch (error) {
         console.error("Error loading services:", error);
       } finally {
