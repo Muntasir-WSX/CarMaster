@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const slides = [
   { image: "/assets/images/banner/1.jpg", title: "Expert Engine Diagnostics & Repair" },
@@ -72,9 +73,9 @@ export default function Banner() {
                   transition={{ delay: 1.4, duration: 0.8 }}
                   className="flex gap-3 sm:gap-5"
                 >
-                  <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-transparent">
-                    Book Now
-                  </button>
+                  <Link href="/appointment">
+  <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-transparent">Appointment</button>
+</Link>
                   <button className="btn btn-sm sm:btn-md btn-outline border-white text-white hover:bg-[#FF3811] hover:border-[#FF3811]">
                     Our Services
                   </button>

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { loginUser } from "@/app/actions/auth/loginUser"; // ইমপোর্ট নিশ্চিত করুন
+import { loginUser } from "@/app/actions/auth/loginUser"; 
  import GoogleProvider from "next-auth/providers/google";
 import { signIn } from "next-auth/react";
 import dbConnect, { collectionsName } from "@/lib/dbConnect";
@@ -32,18 +32,15 @@ export const authOptions = {
   })
 ],
 
- callbacks: {
+callbacks: {
     async signIn({ user, account }) {
-      
       if (account.provider === "google") {
         const { name, email, image } = user;
         try {
           const userCollection = await dbConnect(collectionsName.usersCollection);
-        
           const userExists = await userCollection.findOne({ email });
 
           if (!userExists) {
-          
             await userCollection.insertOne({
               name,
               email,
@@ -52,14 +49,33 @@ export const authOptions = {
               provider: account.provider,
             });
           }
-          return true; 
+          return true;
         } catch (error) {
           console.error("Error saving google user:", error);
-          return false; 
+          return false;
         }
       }
-    
       return true;
+    },
+
+    
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role; 
+      } else {
+        const userCollection = await dbConnect(collectionsName.usersCollection);
+        const dbUser = await userCollection.findOne({ email: token.email });
+        if (dbUser) {
+          token.role = dbUser.role;
+        }
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.role = token.role;
+      }
+      return session;
     },
   },
   pages: {

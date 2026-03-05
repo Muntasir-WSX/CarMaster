@@ -11,55 +11,57 @@ export default function NavBar() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
 
+  const dashboardPath = session?.user?.role === "admin" ? "/admin" : "/my-bookings";
+
   const navItems = [
     { title: "Home", path: "/" },
     { title: "About", path: "/about" },
     { title: "Services", path: "/services" },
+    ...(status === "authenticated" ? [{ title: "Dashboard", path: dashboardPath }] : []),
     { title: "Blog", path: "/blog" },
     { title: "Contact", path: "/contact" },
   ];
 
-  // Login/SignUp links 
- const authLinks = (
-  <div className="flex items-center gap-4 font-semibold">
-    {status === "authenticated" ? (
-      <div className="flex items-center gap-3">
-        <div className="avatar">
-          <div className="w-10 rounded-full ring ring-[#FF3811] ring-offset-base-100 ring-offset-2">
-            <Image
-              src={session?.user?.image || "/default-avatar.png"} 
-              alt="User profile"
-              width={40}
-              height={40}
-            />
+  const authLinks = (
+    <div className="flex items-center gap-4 font-semibold">
+      {status === "authenticated" ? (
+        <div className="flex items-center gap-3">
+          <div className="avatar">
+            <div className="w-10 rounded-full ring ring-[#FF3811] ring-offset-base-100 ring-offset-2">
+              <Image
+                src={session?.user?.image || "/default-avatar.png"}
+                alt="User profile"
+                width={40}
+                height={40}
+              />
+            </div>
           </div>
+          <button
+            onClick={() => signOut()}
+            className="btn btn-sm btn-ghost hover:text-[#FF3811] normal-case"
+          >
+            Logout
+          </button>
         </div>
-        <button 
-          onClick={() => signOut()} 
-          className="btn btn-sm btn-ghost hover:text-[#FF3811] normal-case"
-        >
-          Logout
-        </button>
-      </div>
-    ) : (
-      <div className="flex items-center gap-1">
-        <Link 
-          href="/login" 
-          className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-        >
-          Login
-        </Link>
-        <span className="text-gray-400">/</span>
-        <Link 
-          href="/signup" 
-          className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
-        >
-          SignUp
-        </Link>
-      </div>
-    )}
-  </div>
-);
+      ) : (
+        <div className="flex items-center gap-1">
+          <Link
+            href="/login"
+            className={`${pathname === '/login' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+          >
+            Login
+          </Link>
+          <span className="text-gray-400">/</span>
+          <Link
+            href="/signup"
+            className={`${pathname === '/signup' ? "text-[#FF3811]" : "hover:text-[#FF3811]"} transition-colors`}
+          >
+            SignUp
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 
   const menuItems = (
     <>
@@ -105,27 +107,28 @@ export default function NavBar() {
           </div>
 
           <div className="navbar-end gap-3 md:gap-5">
-            {/* Desktop Auth Links (Hidden on mobile) */}
             <div className="hidden md:block">
-               {authLinks}
+              {authLinks}
             </div>
 
             <div className="flex items-center gap-3">
-    <Link href="/my-bookings">
-        <HiOutlineShoppingBag 
-            size={24} 
-            className="cursor-pointer hover:text-[#FF3811] transition-colors" 
-        />
-    </Link>
-    <HiOutlineSearch 
-        size={24} 
-        className="cursor-pointer hover:text-[#FF3811]" 
-    />
-</div>
-            
-            <button className="btn btn-outline border-[#FF3811] text-[#FF3811] hover:bg-[#FF3811] hover:border-[#FF3811] hover:text-white px-6 rounded-md hidden sm:flex">
-              Appointment
-            </button>
+              <Link href={dashboardPath}>
+                <HiOutlineShoppingBag
+                  size={24}
+                  className="cursor-pointer hover:text-[#FF3811] transition-colors"
+                />
+              </Link>
+              <HiOutlineSearch
+                size={24}
+                className="cursor-pointer hover:text-[#FF3811]"
+              />
+            </div>
+
+            <Link href="/appointment">
+              <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-orange-700 transition-all">
+                Appointment
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -139,12 +142,13 @@ export default function NavBar() {
           </div>
           {menuItems}
           <div className="divider"></div>
-          {/* Mobile Auth Links inside Sidebar */}
           <div className="pl-4">
             {authLinks}
           </div>
           <div className="mt-4 px-4">
-             <button className="btn btn-outline border-[#FF3811] text-[#FF3811] w-full">Appointment</button>
+            <Link href="/appointment">
+              <button className="btn btn-outline border-[#FF3811] text-[#FF3811] w-full">Appointment</button>
+            </Link>
           </div>
         </ul>
       </div>
