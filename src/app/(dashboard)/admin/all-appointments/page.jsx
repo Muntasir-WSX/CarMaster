@@ -62,6 +62,21 @@ export default function AllAppointmentsPage() {
     }
   };
 
+  const viewDetails = (item) => {
+  Swal.fire({
+    title: 'Appointment Details',
+    html: `
+      <div style="text-align: left;">
+        <p><b>Name:</b> ${item.name}</p>
+        <p><b>Address:</b> ${item.address}</p>
+        <p><b>Problem:</b> ${item.problem}</p>
+      </div>
+    `,
+    icon: 'info',
+    confirmButtonText: 'Close'
+  });
+};
+
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-8">
@@ -96,13 +111,16 @@ export default function AllAppointmentsPage() {
                   <td>
                     <div className="text-sm font-medium">{item.phone}</div>
                   </td>
-                  <td className="max-w-xs">
+                  <td className="max-w-xs cursor-pointer hover:bg-gray-100 transition-colors" 
+  onClick={() => viewDetails(item)} 
+>
                     <p className="text-xs font-semibold truncate text-gray-700">
                       {item.problem}
                     </p>
                     <p className="text-[11px] text-blue-600 font-bold mt-1">
                     {item.address}
                     </p>
+                    
                   </td>
                   <td>
                     <span

@@ -28,6 +28,7 @@ export default function DashboardLayout({ children }) {
     { title: "All Bookings", path: "/admin/all-bookings", icon: <HiOutlineViewGrid size={22} /> },
     { title: "Manage Services", path: "/admin/manage-services", icon: <HiOutlineViewGrid size={22} /> },
   ];
+  
 
   return (
     <div className="drawer lg:drawer-open bg-[#F8F9FA]">
