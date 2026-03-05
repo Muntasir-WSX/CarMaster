@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import { HiOutlineHome, HiOutlineCalendar, HiOutlineViewGrid, HiOutlineLogout, HiMenuAlt2 } from "react-icons/hi";
 import NavLogo from '@/ShareComponents/NavLogo';
+import { PiPlus } from 'react-icons/pi';
 
 export default function DashboardLayout({ children }) {
   const { data: session, status } = useSession();
@@ -27,6 +28,7 @@ export default function DashboardLayout({ children }) {
     { title: "All Appointments", path: "/admin/all-appointments", icon: <HiOutlineCalendar size={22} /> },
     { title: "All Bookings", path: "/admin/all-bookings", icon: <HiOutlineViewGrid size={22} /> },
     { title: "Manage Services", path: "/admin/manage-services", icon: <HiOutlineViewGrid size={22} /> },
+    { title: "Add Service", path: "/admin/add-service", icon: <PiPlus size={22} /> },
   ];
   
 
