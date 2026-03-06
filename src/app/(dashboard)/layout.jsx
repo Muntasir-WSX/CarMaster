@@ -23,7 +23,6 @@ export default function DashboardLayout({ children }) {
 
   const isAdmin = session?.user?.role === "admin";
 
-  // তোমার ফোল্ডার স্ট্রাকচার অনুযায়ী পাথ সেট করা হলো
   const menuItems = isAdmin ? [
     { title: "Dashboard Overview", path: "/admin", icon: <HiOutlineHome size={22} /> },
     { title: "All Appointments", path: "/admin/all-appointments", icon: <HiOutlineCalendar size={22} /> },
@@ -33,7 +32,7 @@ export default function DashboardLayout({ children }) {
   ] : [
     { title: "Dashboard Overview", path: "/user", icon: <HiOutlineHome size={22} /> },
     { title: "My Journey Log", path: "/user/my-bookings", icon: <HiOutlineShoppingBag size={22} /> },
-    { title: "Service Echoes", path: "/user/appointment", icon: <HiOutlineCalendar size={22} /> },
+    { title: "Service Echoes", path: "/user/appointments", icon: <HiOutlineCalendar size={22} /> },
   ];
 
   const currentPage = menuItems.find(item => item.path === pathname)?.title || "Dashboard";
@@ -43,7 +42,6 @@ export default function DashboardLayout({ children }) {
       <input id="main-drawer" type="checkbox" className="drawer-toggle" />
       
       <div className="drawer-content flex flex-col">
-        {/* মোবাইল হেডার - এটি ড্রয়ার ওপেন করার জন্য দরকার */}
         <header className="navbar bg-white border-b border-gray-100 px-6 py-4 sticky top-0 z-30 lg:hidden">
           <div className="flex-1">
             <label htmlFor="main-drawer" className="btn btn-ghost drawer-button mr-2">
@@ -52,8 +50,6 @@ export default function DashboardLayout({ children }) {
             <h1 className="text-xl font-bold text-gray-800">{currentPage}</h1>
           </div>
         </header>
-
-        {/* ব্যানার সেকশন */}
         <div className="relative h-48 md:h-64 w-full overflow-hidden shadow-md">
           <Image src={bannerimg} alt="Banner" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
@@ -61,16 +57,12 @@ export default function DashboardLayout({ children }) {
             <p className="mt-2 opacity-80 text-sm md:text-base">Home - {currentPage}</p>
           </div>
         </div>
-
-        {/* মেইন এরিয়া */}
         <main className="p-4 md:p-6">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 min-h-[60vh]">
             {children}
           </div>
         </main>
       </div>
-
-      {/* সাইডবার */}
       <div className="drawer-side z-40">
         <label htmlFor="main-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
         <div className="menu p-6 w-80 min-h-full bg-white border-r border-gray-100 flex flex-col">
