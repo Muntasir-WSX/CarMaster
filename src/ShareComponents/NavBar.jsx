@@ -10,16 +10,17 @@ import Image from "next/image";
 export default function NavBar() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
+  const role = session?.user?.role;
 
   const dashboardPath = session?.user?.role === "admin" ? "/admin" : "/my-bookings";
 
   const navItems = [
     { title: "Home", path: "/" },
     { title: "About", path: "/about" },
-    { title: "Services", path: "/services" },
-    ...(status === "authenticated" ? [{ title: "Dashboard", path: dashboardPath }] : []),
+    ...(role !== "admin" ? [{ title: "Services", path: "/services" }] : []),
     { title: "Blog", path: "/blog" },
     { title: "Contact", path: "/contact" },
+    ...(status === "authenticated" ? [{ title: "Dashboard", path: dashboardPath }] : []),
   ];
 
   const authLinks = (
@@ -124,11 +125,13 @@ export default function NavBar() {
               />
             </div>
 
-            <Link href="/appointment">
-              <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-orange-700 transition-all">
-                Appointment
-              </button>
-            </Link>
+            {role !== "admin" && (
+  <Link href="/appointment">
+    <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-orange-700 transition-all">
+      Appointment
+    </button>
+  </Link>
+)}
           </div>
         </div>
       </div>
