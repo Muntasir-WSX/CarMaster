@@ -10,9 +10,9 @@ import Image from "next/image";
 export default function NavBar() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
-  const role = session?.user?.role;
 
-  const dashboardPath = session?.user?.role === "admin" ? "/admin" : "/my-bookings";
+const role = session?.user?.role;
+const dashboardPath = role === "admin" ? "/admin" : "/user";
 
   const navItems = [
     { title: "Home", path: "/" },

@@ -50,6 +50,7 @@ export default function RootLayout({ children }) {
               },
             },
           }}
+          suppressHydrationWarning={true}
         />
         {children} 
         </AuthProvider>

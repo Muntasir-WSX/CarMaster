@@ -59,10 +59,12 @@ callbacks: {
     },
 
     
-    async jwt({ token, user }) {
+   async jwt({ token, user }) {
+      
       if (user) {
         token.role = user.role; 
-      } else {
+      } 
+      if (!token.role) {
         const userCollection = await dbConnect(collectionsName.usersCollection);
         const dbUser = await userCollection.findOne({ email: token.email });
         if (dbUser) {
