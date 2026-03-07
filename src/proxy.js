@@ -6,12 +6,12 @@ export async function middleware(request) {
     req: request, 
     secret: process.env.NEXTAUTH_SECRET 
   });
-
-  const { pathname } = request.nextUrl;
-
+  const url = request.nextUrl.clone();
+  const pathname = url.pathname;
   const isPrivatePath = 
-    pathname.startsWith('/services') || 
-    pathname.startsWith('/add-product');
+    pathname?.startsWith('/services') || 
+    pathname?.startsWith('/add-product');
+
   if (isPrivatePath && !token) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
@@ -23,7 +23,7 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    '/services/:path*',  
+    '/services/:path*',   
     '/add-product/:path*' 
   ],
 };
