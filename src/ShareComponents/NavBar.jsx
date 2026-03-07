@@ -119,10 +119,6 @@ const dashboardPath = role === "admin" ? "/admin" : "/user";
                   className="cursor-pointer hover:text-[#FF3811] transition-colors"
                 />
               </Link>
-              <HiOutlineSearch
-                size={24}
-                className="cursor-pointer hover:text-[#FF3811]"
-              />
             </div>
 
             {role !== "admin" && (
