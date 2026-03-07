@@ -18,7 +18,7 @@ const dashboardPath = role === "admin" ? "/admin" : "/user";
     { title: "Home", path: "/" },
     { title: "About", path: "/about" },
     ...(role !== "admin" ? [{ title: "Services", path: "/services" }] : []),
-    { title: "Browse Products", path: "/products" },
+    { title: "Browse Products", path: "/browse-products" },
     { title: "Contact", path: "/contact" },
     ...(status === "authenticated" ? [{ title: "Dashboard", path: dashboardPath }] : []),
   ];
