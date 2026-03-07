@@ -76,9 +76,13 @@ export default function Banner() {
                   <Link href="/appointment">
   <button className="btn btn-sm sm:btn-md bg-[#FF3811] border-[#FF3811] text-white hover:bg-transparent">Appointment</button>
 </Link>
-                  <button className="btn btn-sm sm:btn-md btn-outline border-white text-white hover:bg-[#FF3811] hover:border-[#FF3811]">
-                    Our Services
-                  </button>
+
+<Link href="/services">
+ <button className="btn btn-sm sm:btn-md btn-outline border-white text-white hover:bg-[#FF3811] hover:border-[#FF3811]">
+                        Our Services
+                      </button>
+</Link>
+                     
                 </motion.div>
               </div>
             </div>
