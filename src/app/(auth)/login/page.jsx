@@ -10,12 +10,11 @@ export default function LoginPage({ params }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      // params থেকে id পাওয়ার জন্য await করা হয়েছে
       const p = await params; 
       if (!p?.id) return;
 
       try {
-        const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
+        const res = await fetch(`https://car-master-weld.vercel.app/api/service/${p.id}`);
         
         if (!res.ok) {
            throw new Error("Failed to fetch service data");
