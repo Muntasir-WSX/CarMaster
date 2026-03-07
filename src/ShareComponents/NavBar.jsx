@@ -16,9 +16,9 @@ const dashboardPath = role === "admin" ? "/admin" : "/user";
 
   const navItems = [
     { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
-    ...(role !== "admin" ? [{ title: "Services", path: "/services" }] : []),
+     ...(role !== "admin" ? [{ title: "Services", path: "/services" }] : []),
     { title: "Browse Products", path: "/browse-products" },
+    { title: "About", path: "/about" },
     { title: "Contact", path: "/contact" },
     ...(status === "authenticated" ? [{ title: "Dashboard", path: dashboardPath }] : []),
   ];
