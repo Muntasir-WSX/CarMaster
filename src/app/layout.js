@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Car Doctor | Top Notch Service",
+  title: "Car Master | Top Notch Service",
   description: "Professional Car Repair and Maintenance",
   icons: {
     icon: "/icon.svg", 
