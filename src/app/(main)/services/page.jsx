@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineArrowRight } from "react-icons/hi";
 import ServiceBanner from './[id]/ServiceBanner';
+import CarLoader from '@/ShareComponents/CarLoader';
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -35,7 +36,7 @@ export default function ServicesPage() {
   }, []);
 
   if (loading) {
-    return <div className="text-center py-20 text-2xl font-bold">Loading Services...</div>;
+    return <CarLoader></CarLoader>
   }
 
   return (

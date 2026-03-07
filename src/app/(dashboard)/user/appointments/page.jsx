@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { HiOutlineInformationCircle, HiHome, HiOfficeBuilding } from "react-icons/hi";
+import CarLoader from '@/ShareComponents/CarLoader';
 
 export default function AppointmentsPage() {
   const { data: session } = useSession();
@@ -23,8 +24,6 @@ export default function AppointmentsPage() {
   useEffect(() => {
     fetchAppointments();
   }, [session?.user?.email]);
-
-  // গ্রাহকের সমস্যা এবং তথ্য দেখার জন্য পপআপ
   const showDetails = (item) => {
     Swal.fire({
       title: `<span class="text-xl font-bold">${item.serviceTitle || "Appointment Details"}</span>`,
@@ -40,7 +39,7 @@ export default function AppointmentsPage() {
     });
   };
 
-  if (loading) return <div className="text-center py-20 animate-pulse text-[#FF3811]">Loading Service Echoes...</div>;
+  if (loading) return <CarLoader></CarLoader>
 
   return (
     <div>

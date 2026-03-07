@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2"; 
+import CarLoader from "@/ShareComponents/CarLoader";
 
 export default function MyBookingsPage() {
   const { data: session } = useSession();
@@ -46,9 +47,7 @@ export default function MyBookingsPage() {
 
   if (loading)
     return (
-      <div className="text-center py-20 animate-pulse text-[#FF3811]">
-        Loading your journey...
-      </div>
+      <CarLoader></CarLoader>
     );
 
   return (

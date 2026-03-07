@@ -1,4 +1,5 @@
 "use client";
+import CarLoader from "@/ShareComponents/CarLoader";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -92,7 +93,7 @@ export default function AllBookingsPage() {
             {loading ? (
               <tr>
                 <td colSpan="5" className="text-center py-10">
-                  Loading...
+                  <CarLoader></CarLoader>
                 </td>
               </tr>
             ) : (

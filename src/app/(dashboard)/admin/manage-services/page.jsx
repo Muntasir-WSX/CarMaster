@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import CarLoader from "@/ShareComponents/CarLoader";
 
 export default function ManageServicesPage() {
   const [services, setServices] = useState([]);
@@ -62,7 +63,7 @@ export default function ManageServicesPage() {
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan="4" className="p-4 text-center">Loading...</td></tr>
+              <tr><td colSpan="4" className="p-4 text-center"><CarLoader></CarLoader></td></tr>
             ) : (
               services.map((s) => (
                 <tr key={s._id} className="border-b hover:bg-gray-50 transition">

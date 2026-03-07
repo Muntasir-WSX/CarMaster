@@ -1,4 +1,5 @@
 "use client";
+import CarLoader from "@/ShareComponents/CarLoader";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2"; 
 
@@ -98,7 +99,7 @@ export default function AllAppointmentsPage() {
             {loading ? (
               <tr>
                 <td colSpan="4" className="text-center py-10">
-                  <span className="loading loading-spinner text-error"></span>
+                  <CarLoader></CarLoader>
                 </td>
               </tr>
             ) : (

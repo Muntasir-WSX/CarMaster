@@ -8,6 +8,7 @@ import NavLogo from '@/ShareComponents/NavLogo';
 import { PiPlus } from 'react-icons/pi';
 import Image from 'next/image';
 import bannerimg from "../../../public/assets/images/homeCarousel/4.jpg";
+import CarLoader from '@/ShareComponents/CarLoader';
 
 export default function DashboardLayout({ children }) {
   const { data: session, status } = useSession();
@@ -15,7 +16,7 @@ export default function DashboardLayout({ children }) {
 
   if (status === "loading") return (
     <div className="flex justify-center items-center h-screen bg-white">
-      <span className="loading loading-spinner loading-lg text-[#FF3811]"></span>
+     <CarLoader></CarLoader>
     </div>
   );
   
